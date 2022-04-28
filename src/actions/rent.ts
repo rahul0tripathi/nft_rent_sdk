@@ -19,7 +19,6 @@ export interface RentResponse {
 
 export const rentTx = async (request: RentRequest): Promise<RentResponse> => {
   const { token, connection, programId, rentee, renteeTokenAddress, amount, time } = request;
-    console.log(token.toBase58())
   const state = await queryTokenState({
     tokenAddress: token,
     connection,
@@ -27,7 +26,7 @@ export const rentTx = async (request: RentRequest): Promise<RentResponse> => {
   });
   const rentTxn = createRentTxn({
     rentee,
-    renteeTokenAccount:renteeTokenAddress,
+    renteeTokenAccount: renteeTokenAddress,
     amount,
     time,
     state,

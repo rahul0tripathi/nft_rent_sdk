@@ -26,7 +26,8 @@
     "initEscrow":"npm run compile && node build/examples/initEscrow.js",
     "getState":"npm run compile && node build/examples/getTokenState.js",
     "cancel":"npm run compile && node build/examples/cancel.js",
-    "rent":"npm run compile && node build/examples/rent.js"
+    "rent":"npm run compile && node build/examples/rent.js",
+    "withdraw":"npm run compile && node build/examples/withdraw.js"
   },
   "repository": {
     "type": "git",
