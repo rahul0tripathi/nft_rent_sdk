@@ -2,6 +2,7 @@ import { AccountInfo, Connection, PublicKey } from '@solana/web3.js';
 import BN = require('bn.js');
 import { publicKey, uint64 } from '../util';
 import * as BufferLayout from 'buffer-layout';
+import { Wallet } from 'src/wallet';
 
 export const ESCROW_ACCOUNT_DATA_LAYOUT = BufferLayout.struct([
   BufferLayout.u8('isInitialized'),

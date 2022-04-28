@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./lib",
+    "outDir": "./build",
     "target": "es6",
     "declaration": true,
     "removeComments": true,
