@@ -7,7 +7,7 @@ import {
   SystemProgram,
   Transaction,
 } from '@solana/web3.js';
-import { createInitEscrowTx } from 'src/escrow/init';
+import { createInitEscrowTx } from '../../src/escrow';
 import { sendTransaction } from 'src/transactions';
 import { Wallet } from 'src/wallet';
 const SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID: PublicKey = new PublicKey(
@@ -27,6 +27,7 @@ export const findAssociatedTokenAddress = async (
 };
 export interface InitEscrowRequest {
   owner: Wallet;
+  ownerTokenAccount:PublicKey;
   token: PublicKey;
   connection: Connection;
   newAccount: PublicKey;
@@ -37,7 +38,7 @@ export type InitEscrowResponse = {
 };
 
 export const initNFTEscrowTx = async (query: InitEscrowRequest): Promise<InitEscrowResponse> => {
-  const { owner, token, connection, newAccount, programId } = query;
+  const { owner, token, connection, newAccount, programId, ownerTokenAccount } = query;
   const createTempTokenAccountTx = SystemProgram.createAccount({
     programId: TOKEN_PROGRAM_ID,
     space: AccountLayout.span,
@@ -53,7 +54,7 @@ export const initNFTEscrowTx = async (query: InitEscrowRequest): Promise<InitEsc
   );
   const transferTokenToNewAccountTx = Token.createTransferInstruction(
     TOKEN_PROGRAM_ID,
-    await findAssociatedTokenAddress(owner.publicKey, token),
+    ownerTokenAccount,
     newAccount,
     owner.publicKey,
     [],

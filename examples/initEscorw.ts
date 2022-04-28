@@ -1,6 +1,11 @@
 import { Connection, Keypair, PublicKey } from '@solana/web3.js';
-import { config, KeyPairWallet, sendTransaction,initNFTEscrowTx } from '../src';
-
+import {
+  config,
+  KeyPairWallet,
+  sendTransaction,
+  initNFTEscrowTx,
+  findAssociatedTokenAddress,
+} from '../src';
 
 const token = new PublicKey('4JEXtbethjME5oqdWPawbMSbuz9GL7JafWb6X5a9kt1e');
 const connection = new Connection('https://api.testnet.solana.com', 'confirmed');
@@ -13,7 +18,6 @@ const localKp = Keypair.fromSecretKey(
   ]),
 );
 
-
 const wallet = new KeyPairWallet(localKp);
 
 // create a new temp token
@@ -24,6 +28,7 @@ const run = async () => {
     token,
     connection,
     newAccount: tempAccount.publicKey,
+    ownerTokenAccount: await findAssociatedTokenAddress(localKp.publicKey, token),
     programId: config.TESTNET_PROGRAM_ID,
   });
   const txId = await sendTransaction({
