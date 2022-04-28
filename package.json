@@ -22,7 +22,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "tsc -p ./tsconfig.json"
+    "compile": "tsc -p ./tsconfig.json",
+    "initEscrow":"npm run compile && node build/examples/initEscrow.js",
+    "getState":"npm run compile && node build/examples/getTokenState.js",
+    "cancel":"npm run compile && node build/examples/cancel.js"
   },
   "repository": {
     "type": "git",

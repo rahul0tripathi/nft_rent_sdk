@@ -16,5 +16,5 @@ export const queryTokenState = async (query: QueryTokenState): Promise<EscrowSta
   if (escrowAccount === null) {
     throw new Error('Could not find escrow at given address!');
   }
-  return new EscrowState(escrowAccount);
+  return new EscrowState(escrowAccount, pda);
 };

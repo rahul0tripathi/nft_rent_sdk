@@ -41,7 +41,11 @@ export interface IEscrowData {
 
 export class EscrowState {
   private state: EscrowData;
-  constructor(account: AccountInfo<Buffer>) {
+  private pda: PublicKey;
+  constructor(account: AccountInfo<Buffer>, pda?: PublicKey) {
+    if (pda) {
+      this.pda = pda;
+    }
     const state = account.data;
     const decodedState = ESCROW_ACCOUNT_DATA_LAYOUT.decode(state) as IEscrowData;
     this.state = {
@@ -65,5 +69,11 @@ export class EscrowState {
   }
   public isInitialized(): boolean {
     return this.state.isInitialized;
+  }
+  public getPda(): PublicKey {
+    return this.pda;
+  }
+  public getHoldingAccount(): PublicKey {
+    return new PublicKey(this.state.initializerTempTokenAccountPubkey);
   }
 }
