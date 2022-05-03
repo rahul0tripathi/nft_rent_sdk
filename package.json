@@ -1,9 +1,11 @@
 {
   "name": "sol-rent",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "src/index.js",
-  "files": ["build/**/*"],
+  "files": [
+    "build/**/*"
+  ],
   "devDependencies": {
     "@types/bs58": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
@@ -24,11 +26,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc -p ./tsconfig.json",
-    "initEscrow":"npm run compile && node build/examples/initEscrow.js",
-    "getState":"npm run compile && node build/examples/getTokenState.js",
-    "cancel":"npm run compile && node build/examples/cancel.js",
-    "rent":"npm run compile && node build/examples/rent.js",
-    "withdraw":"npm run compile && node build/examples/withdraw.js"
+    "initEscrow": "npm run compile && node build/examples/initEscrow.js",
+    "getState": "npm run compile && node build/examples/getTokenState.js",
+    "cancel": "npm run compile && node build/examples/cancel.js",
+    "rent": "npm run compile && node build/examples/rent.js",
+    "withdraw": "npm run compile && node build/examples/withdraw.js"
   },
   "repository": {
     "type": "git",
