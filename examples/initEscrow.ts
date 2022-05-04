@@ -26,7 +26,7 @@ const tempAccount = new Keypair();
 const run = async () => {
   const resp = await initNFTEscrowTx({
     owner: wallet,
-    rent:new BN(1),
+    rent: new BN(1),
     token,
     connection,
     newAccount: tempAccount.publicKey,
