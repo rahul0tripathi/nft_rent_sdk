@@ -10,11 +10,13 @@ import {
 import { createInitEscrowTx } from '../../src/escrow';
 import { sendTransaction } from 'src/transactions';
 import { Wallet } from 'src/wallet';
+import BN from 'bn.js';
 
 export interface InitEscrowRequest {
   owner: Wallet;
-  ownerTokenAccount:PublicKey;
+  ownerTokenAccount: PublicKey;
   token: PublicKey;
+  rent: BN;
   connection: Connection;
   newAccount: PublicKey;
   programId: PublicKey;
@@ -24,7 +26,7 @@ export type InitEscrowResponse = {
 };
 
 export const initNFTEscrowTx = async (query: InitEscrowRequest): Promise<InitEscrowResponse> => {
-  const { owner, token, connection, newAccount, programId, ownerTokenAccount } = query;
+  const { owner, token, connection, newAccount, programId, ownerTokenAccount, rent } = query;
   const createTempTokenAccountTx = SystemProgram.createAccount({
     programId: TOKEN_PROGRAM_ID,
     space: AccountLayout.span,
@@ -52,6 +54,7 @@ export const initNFTEscrowTx = async (query: InitEscrowRequest): Promise<InitEsc
     programId,
     newAccount,
     pda,
+    rent,
   });
   return {
     tx: new Transaction().add(

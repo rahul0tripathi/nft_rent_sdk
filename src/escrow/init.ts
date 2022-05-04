@@ -4,6 +4,7 @@ import BN = require('bn.js');
 import { Wallet } from 'src/wallet';
 export interface EscrowTxnRequest {
   owner: Wallet;
+  rent: BN;
   pda: PublicKey;
   newAccount: PublicKey;
   programId: PublicKey;
@@ -13,6 +14,7 @@ export const createInitEscrowTx = ({
   programId,
   newAccount,
   pda,
+  rent,
 }: EscrowTxnRequest): TransactionInstruction => {
   return new TransactionInstruction({
     programId,
@@ -41,6 +43,6 @@ export const createInitEscrowTx = ({
         isWritable: false,
       },
     ],
-    data: Buffer.from(Uint8Array.of(0, ...new BN(1).toArray("le", 8))),
+    data: Buffer.from(Uint8Array.of(0, ...rent.toArray('le', 8))),
   });
 };

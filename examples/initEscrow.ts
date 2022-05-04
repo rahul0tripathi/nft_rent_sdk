@@ -1,4 +1,5 @@
 import { Connection, Keypair, PublicKey } from '@solana/web3.js';
+import BN from 'bn.js';
 import {
   config,
   KeyPairWallet,
@@ -25,6 +26,7 @@ const tempAccount = new Keypair();
 const run = async () => {
   const resp = await initNFTEscrowTx({
     owner: wallet,
+    rent:new BN(1),
     token,
     connection,
     newAccount: tempAccount.publicKey,
