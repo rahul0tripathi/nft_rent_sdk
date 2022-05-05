@@ -5,8 +5,7 @@ import { queryTokenState } from './query';
 import { createRentTxn } from '../../src/escrow/rent';
 import BN = require('bn.js');
 export interface RentRequest {
-  rentee: Wallet;
-  renteeTokenAddress: PublicKey;
+  borrower: Wallet;
   amount: BN;
   time: BN;
   token: PublicKey;
@@ -18,15 +17,14 @@ export interface RentResponse {
 }
 
 export const rentTx = async (request: RentRequest): Promise<RentResponse> => {
-  const { token, connection, programId, rentee, renteeTokenAddress, amount, time } = request;
+  const { token, connection, programId, borrower, amount, time } = request;
   const state = await queryTokenState({
     tokenAddress: token,
     connection,
     programId,
   });
   const rentTxn = createRentTxn({
-    rentee,
-    renteeTokenAccount: renteeTokenAddress,
+    rentee : borrower,
     amount,
     time,
     state,

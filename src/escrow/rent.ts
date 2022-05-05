@@ -5,7 +5,6 @@ import { EscrowState } from './state';
 import BN = require('bn.js');
 export interface RentTxnRequest {
   rentee: Wallet;
-  renteeTokenAccount: PublicKey;
   state: EscrowState;
   programId: PublicKey;
   amount: BN;
@@ -21,7 +20,7 @@ export const createRentTxn = (query: RentTxnRequest): TransactionInstruction => 
     keys: [
       { pubkey: query.rentee.publicKey, isSigner: true, isWritable: false },
       {
-        pubkey: query.renteeTokenAccount,
+        pubkey: query.rentee.publicKey,
         isSigner: false,
         isWritable: true,
       },
