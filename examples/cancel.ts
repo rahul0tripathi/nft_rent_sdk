@@ -7,9 +7,8 @@ import {
   findAssociatedTokenAddress,
   cancelEscrowTx,
 } from '../src';
+import { connection, token } from './const';
 
-const token = new PublicKey('4JEXtbethjME5oqdWPawbMSbuz9GL7JafWb6X5a9kt1e');
-const connection = new Connection('https://api.testnet.solana.com', 'confirmed');
 const localKp = Keypair.fromSecretKey(
   Uint8Array.from([
     195, 191, 15, 17, 39, 92, 168, 10, 175, 227, 147, 88, 14, 192, 77, 136, 102, 19, 132, 142, 77,
@@ -26,7 +25,7 @@ const run = async () => {
     const resp = await cancelEscrowTx({
       owner: wallet,
       token,
-      programId: config.TESTNET_PROGRAM_ID,
+      programId: config.DEVNET_PROGRAM_ID,
       connection,
       ownerTokenAddress: await findAssociatedTokenAddress(localKp.publicKey, token),
     });

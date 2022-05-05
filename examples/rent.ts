@@ -8,8 +8,7 @@ import {
   rentTx,
 } from '../src';
 import BN = require('bn.js');
-const token = new PublicKey('4JEXtbethjME5oqdWPawbMSbuz9GL7JafWb6X5a9kt1e');
-const connection = new Connection('https://api.testnet.solana.com', 'confirmed');
+import { connection, token } from './const';
 const renteeKp = Keypair.fromSecretKey(
   Uint8Array.from([
     201, 185, 162, 127, 216, 89, 222, 76, 237, 154, 16, 32, 41, 82, 136, 161, 19, 56, 84, 54, 143,
@@ -26,7 +25,7 @@ const run = async () => {
     const resp = await rentTx({
       borrower: wallet,
       token,
-      programId: config.TESTNET_PROGRAM_ID,
+      programId: config.DEVNET_PROGRAM_ID,
       amount: new BN(1),
       time: new BN(1),
       connection
