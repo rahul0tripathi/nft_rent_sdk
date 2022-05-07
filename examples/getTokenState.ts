@@ -10,7 +10,7 @@ const run = async () => {
       tokenAddress: token,
       connection,
     });
-    console.log(state.getState(), state.isInitialized());
+    console.log(state.getState(), state.isInitialized(),state.getState().maxBorrowDuration.toNumber());
   } catch (error) {
     console.log(error);
   }
