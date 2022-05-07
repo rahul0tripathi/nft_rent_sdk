@@ -12,8 +12,10 @@ export const ESCROW_ACCOUNT_DATA_LAYOUT = BufferLayout.struct([
   publicKey('tokenPubkey'),
   uint64('rate'),
   uint64('expiry'),
-  publicKey('rentee'),
+  publicKey('borrower'),
   BufferLayout.u8('state'),
+  uint64('minBorrowDuration'),
+  uint64('maxBorrowDuration'),
 ]);
 export type EscrowData = {
   isInitialized: boolean;
@@ -23,8 +25,10 @@ export type EscrowData = {
   tokenPubkey: string;
   rate: BN;
   expiry: BN;
-  rentee: string;
+  borrower: string;
   state: BN;
+  minBorrowDuration: BN;
+  maxBorrowDuration: BN;
 };
 
 export interface IEscrowData {
@@ -35,8 +39,10 @@ export interface IEscrowData {
   tokenPubkey: Uint8Array;
   rate: Uint8Array;
   expiry: Uint8Array;
-  rentee: Uint8Array;
+  borrower: Uint8Array;
   state: number;
+  minBorrowDuration: Uint8Array;
+  maxBorrowDuration: Uint8Array;
 }
 
 export class EscrowState {
@@ -60,8 +66,10 @@ export class EscrowState {
       tokenPubkey: new PublicKey(decodedState.tokenPubkey).toBase58(),
       rate: new BN(decodedState.rate, 10, 'le'),
       expiry: new BN(decodedState.expiry, 10, 'le'),
-      rentee: new PublicKey(decodedState.rentee).toBase58(),
+      borrower: new PublicKey(decodedState.borrower).toBase58(),
       state: new BN(decodedState.state),
+      minBorrowDuration: new BN(decodedState.minBorrowDuration, 10, 'le'),
+      maxBorrowDuration: new BN(decodedState.maxBorrowDuration, 10, 'le'),
     };
   }
   public getState(): EscrowData {
