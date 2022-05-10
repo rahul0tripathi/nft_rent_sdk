@@ -1,7 +1,6 @@
 # STREAM NFT
 
 This SDK provides an extension to integrate the STREAM NFT (https://www.streammoney.finance/) smart contract to your application. STREAM NFT is an on-chain smart contract that enables the real-time borrowing/renting of NFTs.
-
 ```
 import {
   queryTokenState,
@@ -73,10 +72,9 @@ cancelEscrowTx({
     ),
   });
 ```
-  
+
 ## Query
 Any service/user can invoke the query function to get the current on-chain PDA state for a provided NFT.
-
 ```
 queryTokenState({
     programId: config.DEVNET_PROGRAM_ID,
