@@ -85,4 +85,5 @@ queryTokenState({
 ```
 
 Please check out the detailed integration at https://github.com/rahul0tripathi/sol_rent_demo
+
 Stream NFT is soon expanding to other chains as well.. stay tuned :)
