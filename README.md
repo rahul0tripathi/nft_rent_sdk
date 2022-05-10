@@ -20,7 +20,7 @@ STREAM NFT flow consists of 5 major flows: Initialize, Rent, Withdraw, Cancel, Q
 ## Initialize:
 Initializes NFT on STREAM NFT protocol, making it available for users to browse and rent.
 ```
-await initNFTEscrowTx({
+initNFTEscrowTx({
     owner: owner wallet,  
     NFT token address,
     rate in lamports/s,
@@ -39,7 +39,7 @@ await initNFTEscrowTx({
 ## Borrow:
 Users can borrow the NFT utility adhering to the contract constraints of rate, min_duration, and max_duration. This is will change the contract state, changing conditional ownership to the borrower.
 ```
-wait rentTx({
+rentTx({
     borrower: borrower wallet,
     NFT token address,
     programId: config.DEVNET_PROGRAM_ID,
@@ -62,7 +62,7 @@ withdrawTx({
 ## Cancel
 NFT owners can cancel the smart contract, thus claiming back the ownership of NFT. This closes the temporary PDA and settles all PDA balances to the owner.
 ```
-await cancelEscrowTx({
+cancelEscrowTx({
     owner: NFT owner wallet,
     NFT token address,
     programId: config.DEVNET_PROGRAM_ID,
@@ -78,7 +78,7 @@ await cancelEscrowTx({
 Any service/user can invoke the query function to get the current on-chain PDA state for a provided NFT.
 
 ```
-awai queryTokenState({
+queryTokenState({
     programId: config.DEVNET_PROGRAM_ID,
     tokenAddress:  NFT token address,
     connection,
