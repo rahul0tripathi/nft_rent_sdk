@@ -34,7 +34,7 @@ await initNFTEscrowTx({
     ),
     programId: config.DEVNET_PROGRAM_ID,
   });
- ```
+```
  
 ## Borrow:
 Users can borrow the NFT utility adhering to the contract constraints of rate, min_duration, and max_duration. This is will change the contract state, changing conditional ownership to the borrower.
@@ -72,7 +72,7 @@ await cancelEscrowTx({
       token
     ),
   });
-  ```
+```
   
 ## Query
 Any service/user can invoke the query function to get the current on-chain PDA state for a provided NFT.
