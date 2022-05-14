@@ -1,4 +1,4 @@
 import { Connection, PublicKey } from "@solana/web3.js";
 
-export const token = new PublicKey('8dv9xBuvv7czsX32tnkafSfi9d7Bh5y4Ly5stdGjEg5Z');
+export const token = new PublicKey('EPNCTFGQgNwuwyvABSxvTD2SsKFvB5phtkS1ATkXEZyU');
 export const connection = new Connection('https://api.devnet.solana.com', 'confirmed');
