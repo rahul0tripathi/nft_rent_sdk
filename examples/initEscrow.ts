@@ -28,6 +28,7 @@ const run = async () => {
     rate: new BN(1),
     minBorrowTime: new BN(1),
     maxBorrowTime: new BN(100),
+    ownersRevenueShare: new BN(80),
     token,
     connection,
     newAccount: tempAccount.publicKey,

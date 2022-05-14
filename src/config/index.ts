@@ -5,5 +5,5 @@ export const TESTNET_PROGRAM_ID: PublicKey = new PublicKey(
 );
 
 export const DEVNET_PROGRAM_ID: PublicKey = new PublicKey(
-  'c6QKS6urFNVWTYJiaFAsMNTWBPms9P7aT1pNeaYkgC7',
+  'EGEbJSB4AC5VYp96yhF137tiwtxPjwqsYuFp6dSNwLZj',
 );

@@ -19,6 +19,7 @@ export interface InitEscrowRequest {
   rate: BN;
   minBorrowTime: BN;
   maxBorrowTime: BN;
+  ownersRevenueShare: BN;
   connection: Connection;
   newAccount: PublicKey;
   programId: PublicKey;
@@ -38,6 +39,7 @@ export const initNFTEscrowTx = async (query: InitEscrowRequest): Promise<InitEsc
     rate,
     minBorrowTime,
     maxBorrowTime,
+    ownersRevenueShare
   } = query;
   const createTempTokenAccountTx = SystemProgram.createAccount({
     programId: TOKEN_PROGRAM_ID,
@@ -69,6 +71,7 @@ export const initNFTEscrowTx = async (query: InitEscrowRequest): Promise<InitEsc
     rate,
     minBorrowTime,
     maxBorrowTime,
+    ownersRevenueShare
   });
   return {
     tx: new Transaction().add(

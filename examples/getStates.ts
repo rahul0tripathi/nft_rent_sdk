@@ -32,6 +32,7 @@ const run = async () => {
       state.getState(),
       state.isInitialized(),
       state.getState().maxBorrowDuration.toNumber(),
+      state.getState().ownersRevenueShare.toNumber()
     );
   } catch (error) {
     console.log(error);
