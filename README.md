@@ -1,3 +1,4 @@
+
 # STREAM NFT
 
 This SDK provides an extension to integrate the STREAM NFT (https://www.streammoney.finance/) smart contract to your application. STREAM NFT is an on-chain "solana" smart contract that enables the real-time borrowing/renting of NFTs.
@@ -11,6 +12,9 @@ import {
   initNFTEscrowTx,
   findAssociatedTokenAddress,
   cancelEscrowTx,
+  getWalletTokens,
+  QueryWalletTokensStatus,
+  getAllListedTokens,
 } from "stream-nft-sdk";
 ```
 
@@ -83,6 +87,36 @@ queryTokenState({
   });
 };
 ```
+## [walletTokens](https://github.com/rahul0tripathi/nft_rent_sdk/blob/a2b0df4dd2baee8d86310fd9a188791e570cb09f/src/actions/query.ts#L10) :
+service/user can get all their listed and borrowed tokens present on stream-nft platform using the following methods
+
+ - get all listed tokens for a wallet
+```ts
+await getWalletTokens({
+  connection,
+  programId:  config.DEVNET_PROGRAM_ID,
+  owner:  wallet,
+  type:  QueryWalletTokensStatus.LISTED,
+})
+```
+- get all borrowed tokens for a wallet
+```ts
+await getWalletTokens({
+  connection,
+  programId:  config.DEVNET_PROGRAM_ID,
+  owner:  wallet,
+  type:  QueryWalletTokensStatus.BORROWED,
+})
+```
+## [getAllListings](https://github.com/rahul0tripathi/nft_rent_sdk/blob/a2b0df4dd2baee8d86310fd9a188791e570cb09f/src/actions/query.ts#L10) :
+get all tokens listed on the stream-nft platform
+```ts
+await  getAllListedTokens({
+	connection,
+	programId:  config.DEVNET_PROGRAM_ID,
+})
+```
+
 
 Please check out the detailed integration at https://github.com/rahul0tripathi/sol_rent_demo and examples are available at https://github.com/rahul0tripathi/nft_rent_sdk/tree/master/examples
 
