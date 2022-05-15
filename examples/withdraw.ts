@@ -1,4 +1,12 @@
-import { Connection, Keypair, PublicKey } from '@solana/web3.js';
+// import {
+//   ASSOCIATED_TOKEN_PROGRAM_ID,
+//   getAssociatedTokenAddress,
+//   getOrCreateAssociatedTokenAccount,
+//   Token,
+//   TOKEN_PROGRAM_ID,
+// } from '@solana/spl-token';
+import { Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { Connection, Keypair, PublicKey, Transaction } from '@solana/web3.js';
 import {
   config,
   KeyPairWallet,
@@ -24,13 +32,18 @@ const run = async () => {
   try {
     const resp = await withdrawTx({
       token,
+      withdrawer: wallet,
+      // adding a single spl token associated pda to share revenue on
+      associatedPdaTokenAddress: new PublicKey('GEPFLY2atZ5sDnnerygxnQRkxhUA2ttK5SVGsDqmtsmP'),
+      associatedBorrowerTokenAddress: new PublicKey('2fs2VoouTApx84Ed6nT1CzN2JarSZ3L2Sgjk52KuFWi2'),
+      associatedOwnersTokenAddress: new PublicKey('8Hj9mdExiKSNKWkb1TuNKCRqyxnkUDGFTWDAXH2iGkoR'),
       programId: config.DEVNET_PROGRAM_ID,
       connection,
     });
     const txId = await sendTransaction({
       connection,
       wallet,
-      signers:[localKp],
+      signers: [localKp],
       txs: resp.tx,
       options: { skipPreflight: false, preflightCommitment: 'confirmed' },
     });

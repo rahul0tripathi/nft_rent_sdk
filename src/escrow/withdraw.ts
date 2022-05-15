@@ -3,12 +3,18 @@ import { PublicKey, TransactionInstruction } from '@solana/web3.js';
 import { Wallet } from 'src/wallet';
 
 export interface WithdrawTxnRequest {
+  associatedOwnersTokenAddress: PublicKey;
+  associatedBorrowerTokenAddress: PublicKey;
+  associatedPdaTokenAddress: PublicKey;
   pda: PublicKey;
   holdingAccount: PublicKey;
   programId: PublicKey;
 }
 
 export const createWithdrawTx = ({
+  associatedOwnersTokenAddress,
+  associatedBorrowerTokenAddress,
+  associatedPdaTokenAddress,
   programId,
   holdingAccount,
   pda,
@@ -19,6 +25,18 @@ export const createWithdrawTx = ({
     keys: [
       { pubkey: holdingAccount, isSigner: false, isWritable: true },
       { pubkey: pda, isSigner: false, isWritable: true },
+      { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
+      { pubkey: associatedOwnersTokenAddress, isSigner: false, isWritable: true },
+      {
+        pubkey: associatedBorrowerTokenAddress,
+        isSigner: false,
+        isWritable: true,
+      },
+      {
+        pubkey: associatedPdaTokenAddress,
+        isSigner: false,
+        isWritable: true,
+      },
     ],
   });
 };

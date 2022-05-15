@@ -16,6 +16,7 @@ export const ESCROW_ACCOUNT_DATA_LAYOUT = BufferLayout.struct([
   BufferLayout.u8('state'),
   uint64('minBorrowDuration'),
   uint64('maxBorrowDuration'),
+  uint64('ownersRevenueShare'),
 ]);
 export type EscrowData = {
   isInitialized: boolean;
@@ -29,6 +30,7 @@ export type EscrowData = {
   state: BN;
   minBorrowDuration: BN;
   maxBorrowDuration: BN;
+  ownersRevenueShare: BN;
 };
 
 export interface IEscrowData {
@@ -43,6 +45,7 @@ export interface IEscrowData {
   state: number;
   minBorrowDuration: Uint8Array;
   maxBorrowDuration: Uint8Array;
+  ownersRevenueShare: Uint8Array;
 }
 
 export class EscrowState {
@@ -70,6 +73,7 @@ export class EscrowState {
       state: new BN(decodedState.state),
       minBorrowDuration: new BN(decodedState.minBorrowDuration, 10, 'le'),
       maxBorrowDuration: new BN(decodedState.maxBorrowDuration, 10, 'le'),
+      ownersRevenueShare: new BN(decodedState.ownersRevenueShare, 10, 'le'),
     };
   }
   public getState(): EscrowData {

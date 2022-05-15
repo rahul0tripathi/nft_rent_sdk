@@ -7,6 +7,7 @@ export interface EscrowTxnRequest {
   rate: BN;
   minBorrowTime: BN;
   maxBorrowTime: BN;
+  ownersRevenueShare: BN;
   pda: PublicKey;
   newAccount: PublicKey;
   programId: PublicKey;
@@ -19,6 +20,7 @@ export const createInitEscrowTx = ({
   rate,
   minBorrowTime,
   maxBorrowTime,
+  ownersRevenueShare,
 }: EscrowTxnRequest): TransactionInstruction => {
   return new TransactionInstruction({
     programId,
@@ -53,6 +55,7 @@ export const createInitEscrowTx = ({
         ...rate.toArray('le', 8),
         ...minBorrowTime.toArray('le', 8),
         ...maxBorrowTime.toArray('le', 8),
+        ...ownersRevenueShare.toArray('le', 8),
       ),
     ),
   });
