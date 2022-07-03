@@ -117,7 +117,4 @@ await  getAllListedTokens({
 })
 ```
 
-
-Please check out the detailed integration at https://github.com/rahul0tripathi/sol_rent_demo and examples are available at https://github.com/rahul0tripathi/nft_rent_sdk/tree/master/examples
-
 Stream NFT is soon expanding to other chains as well.. stay tuned :)
